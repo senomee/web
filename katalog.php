@@ -181,7 +181,7 @@ if($websitetitle == ""){
 													<div id="fb-root"></div>
 													<script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&amp;version=v5.0&amp;appId=569420283509636&amp;autoLogAppEvents=1"></script>
 													 
-													<div class="fb-comments" data-href="<?php echo $baseurl ?>?post/<?php echo $row["postid"] ?>" data-width="100%"  data-numposts="14"></div>
+													<div class="fb-comments" data-href="katalog.php?post/<?php echo $row["postid"] ?>" data-width="100%"  data-numposts="14"></div>
 													
 												</div>
 												<?php
@@ -209,10 +209,7 @@ if($websitetitle == ""){
 						</div>
 						<div class="randomvids">
 							<div class="randomvidblock orderblock">
-								<h2><?php echo uilang("Order") ?></h2>
-								<label><i class="fa fa-plus"></i> <?php echo uilang("Quantity") ?></label>
-								<input id="currentQ" type="number" value=1 onchange="updateCurrentTotal()" min=1 step=1 style="border-radius: 0px;" onkeyup="onlyNumbers(this)">
-								
+								<h2><?php echo uilang("Order") ?></h2>								
 								<?php
 								if($row["options"] != ""){
 									?>
@@ -311,14 +308,18 @@ if($websitetitle == ""){
 								
 							</div>
 							
-							<div class="randomvidblock"><?php echo uilang("You may like:") ?></div>
+							
+
+						</div>
+					</div>
+					<div class="randomvidblock"><?php echo uilang("Reccomendation:") ?></div>
 							<?php
-							$sql = "SELECT * FROM $tableposts ORDER BY RAND() LIMIT 5";
+							$sql = "SELECT * FROM $tableposts ORDER BY RAND() LIMIT 4";
 							$result = mysqli_query($connection, $sql);
 							if(mysqli_num_rows($result) > 0){
 								while($row = mysqli_fetch_assoc($result)){
 									?>
-									<a href="<?php echo $baseurl ?>?post=<?php echo $row["postid"] ?>">
+									<a href="katalog.php?post=<?php echo $row["postid"] ?>">
 										<div class="randomvidblock">
 											<?php
 											$imagefile = $row["picture"];
@@ -330,16 +331,12 @@ if($websitetitle == ""){
 
 											$saleprice = number_format($row["normalprice"], $deccount);
 											$oldprice = "";
-											if($row["discountprice"] != 0){
-												$saleprice = number_format($row["discountprice"], $deccount);
-												$oldprice = "<span style='margin: 0px; margin-top: 20px; text-decoration: line-through; font-size: 12px; margin-right: 10px; color: gray;'>" . $currencysymbol . number_format($row["normalprice"], $deccount) . "</span>";
-											}
 											
 											?>
 											<div class="lilimage" style="background: url(<?php echo $baseurl . $imagefile ?>) no-repeat center center; background-size: cover; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover;"></div>
 											<div class="lildescr">
 												<div class="shorttext" style="font-size: 18px; font-weight: bold;">
-													<?php echo $row["title"] ?><br><i class="fa fa-angle-double-right"></i> <?php echo $oldprice. $currencysymbol . number_format($saleprice, $deccount) ?>
+													<?php echo $row["title"] ?><br><i class="fa fa-angle-double-right"></i>
 												</div>
 												<div style="padding-left: 14px;">
 													<p><?php echo shorten_text(strip_tags($row["content"]), 75, ' ...', false) ?></p>
@@ -354,9 +351,7 @@ if($websitetitle == ""){
 									<?php
 								}
 							}
-							?>
-						</div>
-					</div>
+							?>	
 				</div>
 				<?php
 			}
@@ -394,9 +389,7 @@ if($websitetitle == ""){
 														<h2><?php echo shorten_text($row["title"], 40, ' ...', true) ?></h2>
 														<p><?php echo shorten_text(strip_tags($row["content"]), 256, ' ...', false) ?></p>
 													</div>
-													<div class="smallinmobile w25" style="vertical-align: middle; text-align: center;">
-														<div class="morebutton"><?php echo uilang("MORE") ?> <i class="fa fa-chevron-right" style="width: 30px;"></i></div>
-													</div>
+
 												</div>
 											</a>
 										</div>
@@ -433,7 +426,7 @@ if($websitetitle == ""){
 								<!-- Thumbnail -->
 								<div class="filmblock">
 									<div class="categoryname" style="display: none;"><?php echo $currentcategory ?></div>
-									<a href="<?php echo $baseurl ?>?post=<?php echo $row["postid"] ?>">
+									<a href="katalog.php?post=<?php echo $row["postid"] ?>">
 										<?php
 										if($thumbnailmode == "0"){
 											?>
@@ -460,9 +453,9 @@ if($websitetitle == ""){
 										}
 										?>
 										
-										<h2 style="margin-top: 20px;" class="producttitle"><?php echo shorten_text($row["title"], 25, ' ...', false) ?></h2><div class="realproducttitle" style="display: none"><?php echo $row["title"] ?></div><div class="productoptions" style="display: none"><?php echo $row["options"] ?></div><div style="padding-bottom: 20px; font-size: 25px; font-weight: bold; color: <?php echo $maincolor ?>"><?php echo $oldprice . $currencysymbol . "<span class='thiscurrentpricedisplay'>" . number_format($saleprice, $deccount) ?></span><span style="display: none;" class="thiscurrentprice"><?php echo $saleprice ?></span> <span style="font-size: 12px;">x</span> <input class="productquantity" type="number" value=1 min=1 style="vertical-align: middle; display: inline-block; width: 60px; font-weight: bold; padding: 10px; margin: 5px; border-radius: 0px;" onkeyup="onlyNumbers(this)"></div>
-										<div class="morebutton" onclick="addtocart(<?php echo $productindex ?>)"><i class="fa fa-shopping-cart"></i> <?php echo uilang("Add to Cart") ?></div>
-										<div style="padding: 20px;"><a onclick="showmore(<?php echo $productindex ?>)" class="textlink whatsmorebutton" style="cursor: pointer; text-decoration: none;"><i class="fa fa-chevron-down"></i> <?php echo uilang("More") ?></a><div class="whatsmorecontent" style="display: none; padding: 5px; font-size: 12px;"><?php echo shorten_text(strip_tags($row["content"]), 50, " ...") ?><br><a class="textlink" href="<?php echo $baseurl ?>?post=<?php echo $row["postid"] ?>"><?php echo uilang("Continue") ?></a></div></div>
+										<h2 style="margin-top: 20px;" class="producttitle"><?php echo shorten_text($row["title"], 25, ' ...', false) ?></h2><div class="realproducttitle" style="display: none"><?php echo $row["title"] ?></div><div class="productoptions" style="display: none"><?php echo $row["options"] ?></div><div style="padding-bottom: 20px; font-size: 25px; font-weight: bold; color: <?php echo $maincolor ?>"><?php echo $oldprice . $currencysymbol . "<span class='thiscurrentpricedisplay'>" . number_format($saleprice, $deccount) ?></span><span style="display: none;" class="thiscurrentprice"><?php echo $saleprice ?></span> <input class="productquantity" type="hidden" value=1 min=1 style="vertical-align: middle; display: inline-block; width: 60px; font-weight: bold; padding: 10px; margin: 5px; border-radius: 0px;" onkeyup="onlyNumbers(this)"></div>
+										<div class="morebutton" onclick="addtocart(<?php echo $productindex ?>)" value="1" min="1"><i class="fa fa-shopping-cart"></i> <?php echo uilang("Add to Cart") ?></div>
+										<div style="padding: 20px;"><a onclick="showmore(<?php echo $productindex ?>)" class="textlink whatsmorebutton" style="cursor: pointer; text-decoration: none;"><i class="fa fa-chevron-down"></i> <?php echo uilang("More") ?></a><div class="whatsmorecontent" style="display: none; padding: 5px; font-size: 12px;"><?php echo shorten_text(strip_tags($row["content"]), 50, " ...") ?><br><a class="textlink" href="katalog.php?post=<?php echo $row["postid"] ?>"><?php echo uilang("Continue") ?></a></div></div>
 									</div>
 								</div>
 								<?php
@@ -481,7 +474,7 @@ if($websitetitle == ""){
 			?>
 			
 			<div id="cartbutton" onclick="showcartui()">
-				<div class="cartbuttoncircle" style="-webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.35); -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.35); box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.35); border-radius: 50%; background-color: white; text-align: center; display: table-cell; vertical-align: middle; border: 2px solid <?php echo $maincolor ?>; position: relative;">
+			<div class="cartbuttoncircle" style="-webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0); -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0); box-shadow: 0px 0px 15px 0px rgba(0,0,0,0); border-radius: 50%; background-color: white; text-align: center; display: table-cell; vertical-align: middle; position: relative;">
 					<i class="fa fa-shopping-cart" style="cursor: pointer;"></i>
 				</div>
 			</div>
@@ -642,32 +635,34 @@ if($websitetitle == ""){
 					
 					var today = new Date()
 					var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate()
-					var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds()
-					var dateTime = date+' '+time
-					var orderid = ( Math.floor(Math.random() * 9000) + 1000 ) + "/" + dateTime
+					var orderid = ( Math.floor(Math.random() * 9000) + 1000 ) + "/" + date
 					
-					ordermessage = "ORDER ID: " + orderid + "\nDATE: " +today+ "\n"
+					ordermessage = "ORDER ID: " + orderid + "\nDATE: " +date+ "\n"
 					var cartdata = ""
 					var grandtotal = 0;
 					if(cartobject.length > 0){
 						cartdata += "<div style='display: table; width: 100%;'>";
 						for(var i = 0; i < cartobject.length; i++){
 							var tmpttl = cartobject[i].price * cartobject[i].quantity
-							cartdata += "<div style='margin-bottom: 10px;'><div style='display: table-cell; vertical-align: middle;'><img src='<?php echo $baseurl ?>"+cartobject[i].image+"' style='max-width: 64px; border-radius: 5px; margin-bottom: 10px;'></div><div style='display: table-cell; vertical-align: middle; padding-left: 10px; padding-right: 10px; font-size: 14px;'>"+cartobject[i].title + " <?php echo $currencysymbol ?>" + tSep(parseFloat(cartobject[i].price).toFixed(<?php echo $deccount ?>)) + "</div><div style='display: table-cell; vertical-align: middle;'>*</div><div style='display: table-cell; vertical-align: top;'><input id='cartq"+i+"' onchange='modifycq("+i+")' class='productquantity' type='number' value=" + cartobject[i].quantity + " min=1 style='vertical-align: middle; display: inline-block; width: 60px; font-weight: bold; padding: 10px; margin: 5px; border-radius: 0px;' onkeyup='onlyNumbers(this)'></div><div style='display: table-cell; vertical-align: middle;'>=</div><div style='display: table-cell; vertical-align: middle;'><div style='padding-left: 5px; padding-right: 5px;'><?php echo $currencysymbol ?>" + tSep(tmpttl.toFixed(<?php echo $deccount ?>)) + "</div></div><div style='display: table-cell; vertical-align: middle; padding-left: 5px; padding-right: 5px;' onclick='removeitem("+i+")'><i class='fa fa-trash' style='color: red;'></i></div></div>"
+							cartdata += "<div style='margin-bottom: 10px;'><div style='display: table-cell; vertical-align: middle;'><img src='<?php echo $baseurl ?>"+cartobject[i].image
+							+"' style='max-width: 64px; border-radius: 5px; margin-bottom: 10px;'></div><div style='display: table-cell; vertical-align: middle; padding-left: 10px; padding-right: 10px; font-size: 14px;'>"+cartobject[i].title 
+							+ cartobject[i].quantity + " </div><div style='display: table-cell; vertical-align: middle;'></div><div style='display: table-cell; vertical-align: middle;'><div style='padding-left: 5px; padding-right: 5px;'>		" 
+							+ tSep(tmpttl.toFixed(<?php echo $deccount ?>)) 
+							+ "</div></div><div style='display: table-cell; vertical-align: middle; padding-left: 5px; padding-right: 5px;' onclick='removeitem("+i+")'><i class='fa fa-trash' style='color: red;'></i></div></div>"
 							grandtotal += tmpttl
 							
 							ordermessage += "- " + cartobject[i].title + " x " + cartobject[i].quantity + " = <?php echo $currencysymbol ?> " + tmpttl.toFixed(<?php echo $deccount ?>) + "\n"
 						}
 						cartdata += "</div>";
-					}
-					
+					}		
+
 					ordermessage += "<?php echo uilang("Total") ?> = <?php echo $currencysymbol ?> " + grandtotal.toFixed(<?php echo $deccount ?>) + "\n"
 					
 					cartdata += "<hr style='background-color: white;'><h1><?php echo uilang("Total") ?> = <?php echo $currencysymbol ?>" + tSep(grandtotal.toFixed(<?php echo $deccount ?>)) + "</h1>"
 					cartdata += "<h3><?php echo uilang("Contact Information") ?></h3><label><?php echo uilang("Name") ?></label><input id='cdname' placeholder='<?php echo uilang("Name") ?>'>"
 					cartdata += "<label><?php echo uilang("Mobile") ?></label><input id='cdmobile' type='number' placeholder='<?php echo uilang("Mobile") ?>'>"
 					cartdata += "<label><?php echo uilang("Delivery Address") ?></label><input id='cdaddress' placeholder='<?php echo uilang("Delivery Address") ?>'>"
-					cartdata += "<label><?php echo uilang("Delivery Method") ?></label><select id='cdmethod'><?php echo uilang("Delivery Method") ?><option>COD (khusus daerah Purwokerto)</option><option>Ekspedisi</option></select>"
+					cartdata += "<label><?php echo uilang("Delivery Method") ?></label><select id='cdmethod'><?php echo uilang("Delivery Method") ?><option>COD (khusus daerah Banjarnegara)</option><option>Ekspedisi</option></select>"
 					cartdata += "<label><?php echo uilang("Order Notes") ?></label><textarea id='cartordernotes' placeholder='<?php echo uilang("Order Notes") ?>'></textarea>"
 					cartdata += "<div style='text-align: center;'><div class='buybutton' onclick='hidecartui()'><i class='fa fa-arrow-left'></i> <?php echo uilang("Back to Shop") ?></div><div class='buybutton' onclick='clearcart()'><i class='fa fa-times'></i> <?php echo uilang("Clear Cart") ?></div><div class='buybutton' onclick='chatnow()'><i class='fa fa-whatsapp'></i> <?php echo uilang("Order on WhatsApp") ?></div></div>"
 					$("#cartdata").html(cartdata)
@@ -781,4 +776,3 @@ if($websitetitle == ""){
 
 }
 ?>
-

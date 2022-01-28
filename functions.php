@@ -16,11 +16,6 @@ function showCatName($id){
 	global $connection;
 	global $tablecategories;
 	$sql = "SELECT * FROM $tablecategories WHERE id = $id";
-	$catname = uilang("Uncategorized");
-	$fetchedcat = mysqli_fetch_assoc(mysqli_query($connection, $sql))["category"];
-	if($fetchedcat != "")
-		$catname = $fetchedcat;
-	return $catname;
 }
 
 function getRandomNumbers(){

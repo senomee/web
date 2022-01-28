@@ -35,11 +35,11 @@
 	body{
 		padding: 0px;
 		margin: 0px;
-		font-family: 'Dosis', sans-serif;
+		font-family: 'Montserrat', sans-serif;
 		background-color: #4a4a4a;
 		overflow-x: hidden;
 		
-		background: url(images/background.png) no-repeat fixed center; 
+		background: url(images/background.png); 
 		-webkit-background-size: cover;
 		-moz-background-size: cover;
 		-o-background-size: cover;
@@ -53,7 +53,7 @@
 		padding: 20px;
 		border-radius: 5px;
 		margin-bottom: 20px;
-		border: 2px solid <?php echo $maincolor ?>;
+		
 	}
 	
 	
@@ -186,12 +186,9 @@
 	}
 	
 	#header{
-		background-color: rgba(255, 255, 255, .75);		
+		background-color: rgba(255, 255, 255, 255);		
 		font-size: 25px;
-		/*border-bottom: 1px solid <?php echo $maincolor ?>;*/
-		-webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.35);
-		-moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.35);
-		box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.35);
+
 		
 		backdrop-filter: blur(15px);
 		-webkit-backdrop-filter: blur(15px);
@@ -425,10 +422,12 @@
 		
 		
 	}
+
 	
 	.randomvidblock{
 		display: table;
-		width: 350px;
+		width: 500px;
+		height: 25px;
 		padding: 14px;
 		box-sizing: border-box;
 		transition: background-color .5s;
@@ -609,7 +608,7 @@
 	}
 	
 	.adminmenubar{
-		display: table-cell; width: 140px; background-color: black; color: white;
+		display: table-cell; width: 140px; background-color: #666666; color: white;
 	}
 	
 	.barsbutton{
@@ -770,6 +769,7 @@
 		.randomvidblock{
 			display: table;
 			width: 100%;
+			Height: 10%;
 			padding: 14px;
 			transition: background-color .5s;
 		}

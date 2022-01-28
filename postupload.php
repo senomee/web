@@ -54,7 +54,7 @@ if(isset($_POST["newposttitle"])){
 		
 		?>
 		<h3><?php echo uilang("Congratulation!") ?></h3>
-		<p><?php echo uilang("New post has been published. Click") ?> <a class="textlink" href="<?php echo $baseurl ?>" target="_blank"><?php echo uilang("here") ?></a> <?php echo uilang("to view it") ?>.</p>
+		<p><?php echo uilang("New post has been published. Click") ?> <a class="textlink" href="katalog.php" target="_blank"><?php echo uilang("here") ?></a> <?php echo uilang("to view it") ?>.</p>
 		<?php
 	}else{
 		?>

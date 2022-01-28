@@ -20,7 +20,7 @@ include("uilang.php");
 		<link rel="shortcut icon" href="<?php echo $baseurl ?>iconlogo.ico" type="image/x-icon">
 		<link rel="icon" href="<?php echo $baseurl ?>iconlogo.ico" type="image/x-icon">
 		<script src="jquery.min.js"></script>
-        <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@300&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/css?family=Montserrat" rel="stylesheet">
 		
 		<link rel="stylesheet" type="text/css" href="<?php echo $baseurl ?>assets/css/font-awesome.css">
 		
