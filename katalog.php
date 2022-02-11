@@ -647,7 +647,6 @@ if($websitetitle == ""){
 							cartdata += "<div style='margin-bottom: 10px;'><div style='display: table-cell; vertical-align: middle;'><img src='<?php echo $baseurl ?>"+cartobject[i].image
 							+"' style='max-width: 64px; border-radius: 5px; margin-bottom: 10px;'></div><div style='display: table-cell; vertical-align: middle; padding-left: 10px; padding-right: 10px; font-size: 14px;'>"+cartobject[i].title 
 							+ cartobject[i].quantity + " </div><div style='display: table-cell; vertical-align: middle;'></div><div style='display: table-cell; vertical-align: middle;'><div style='padding-left: 5px; padding-right: 5px;'>		" 
-							+ tSep(tmpttl.toFixed(<?php echo $deccount ?>)) 
 							+ "</div></div><div style='display: table-cell; vertical-align: middle; padding-left: 5px; padding-right: 5px;' onclick='removeitem("+i+")'><i class='fa fa-trash' style='color: red;'></i></div></div>"
 							grandtotal += tmpttl
 							
