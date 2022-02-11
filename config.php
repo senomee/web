@@ -82,7 +82,7 @@ $cfg->disabledecimals = 0;
 
 //Base URL
 $baseurl = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://$_SERVER[HTTP_HOST]$_SERVER[REQUEST_URI]";
-$cfg->baseurl = str_replace("index.html", "", $baseurl);
+$cfg->baseurl = str_replace("index.html", "", "");
 
 //ConfigJSON
 $JSONcfg = json_encode($cfg);
